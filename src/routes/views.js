@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
     res.render("home");
 });
 
-// vista login 
+// vista login / mi cuenta
 
 router.get("/login", (req, res) => {
     res.render("Login");
