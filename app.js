@@ -12,18 +12,15 @@ app.engine(
         partialsDir: __dirname + '/views/partials'
     })
 );
-app.set("view engine", "hbs");
 
-// llama al server
+app.set("view engine", "hbs");
 
 app.listen(3000, () => console.log("servidor en http://localhost:3000"));
 
 
-// llama a axios
+// llamar axios
 
 app.use('/axios', express.static(__dirname + '/node_modules/axios/dist'));
-
-
 
 // llamar enrutadores
 
