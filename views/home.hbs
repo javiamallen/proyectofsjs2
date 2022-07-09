@@ -1,13 +1,9 @@
-<main>
-    <h1>Home</h1>
-</main>
+
+<h1>Home</h1>
+
+
+
 
 <script>
-
-    // falta inyectar token al header authorization jwt
-
-    axios.defaults.headers.common['Authorization'] = localStorage.getItem("token");
-    console.log(axios.defaults)
-
-    axios.get('/api/cliente').then((response) => console.log(response.data));
+axios.get('/api/cliente').then((response) => console.log(response.data));
 </script>

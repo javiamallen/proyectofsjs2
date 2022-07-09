@@ -22,6 +22,12 @@ app.listen(3000, () => console.log("servidor en http://localhost:3000"));
 
 app.use('/axios', express.static(__dirname + '/node_modules/axios/dist'));
 
+// llamar bootstrap
+
+app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist'));
+
+
+
 // llamar enrutadores
 
 app.use('/', require('./src/routes/views'));
