@@ -14,7 +14,14 @@ app.engine(
 );
 app.set("view engine", "hbs");
 
+// llama al server
+
 app.listen(3000, () => console.log("servidor en http://localhost:3000"));
+
+
+// llama a axios
+
+app.use('/axios', express.static(__dirname + '/node_modules/axios/dist'));
 
 
 
