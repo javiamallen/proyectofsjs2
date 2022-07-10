@@ -16,10 +16,10 @@ const getCliente = async () => {
 
 // crear cliente
 
-const createCliente = async ({ nombre, apellido, email, celular, comuna, password }) => {
+const createCliente = async ({ email, nombre, apellido, celular, password }) => {
     const result = await pool.query({
-        text: "INSERT INTO cliente(nombre, apellido, email, celular, comuna, password) VALUES ($1, $2, $3, $4, $5, $6);",
-        values: [nombre, apellido, email, celular, comuna, password]
+        text: "INSERT INTO cliente(email, nombre, apellido, celular, password) VALUES ($1, $2, $3, $4, $5);",
+        values: [email, nombre, apellido, celular, password]
     })
     return result.rows[0];
 }
