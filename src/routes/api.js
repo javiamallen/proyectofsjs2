@@ -10,4 +10,8 @@ router.get('/cliente', async (req, res) => {
 
 });
 
+router.post('/cliente', async (req, res) => {
+
+});
+
 module.exports = router;

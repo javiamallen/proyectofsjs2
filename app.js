@@ -1,7 +1,15 @@
 const express = require('express');
 const exphbs = require("express-handlebars");
 
+
+
+
 const app = express();
+
+// middlewares principales
+
+app.use(express.json())
+app.use(express.urlencoded({extended: false}));
 
 app.engine(
     "hbs",
