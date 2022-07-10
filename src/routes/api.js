@@ -6,12 +6,18 @@ const router = Router();
 
 router.get('/cliente', async (req, res) => {
     const cliente = await db.getCliente();
-    res.send(cliente);
+    res.status(202).send(cliente);
 
 });
 
 router.post('/cliente', async (req, res) => {
+try {
+const NuevoCliente = await db.createCliente(req.body);
+res.status(201).send(NuevoCliente);
 
+} catch (error) {
+  res.status(500).send(error);
+}
 });
 
 module.exports = router;

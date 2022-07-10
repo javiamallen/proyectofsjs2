@@ -16,7 +16,7 @@ const getCliente = async () => {
 
 // crear cliente
 
-const crearCliente = async ({ nombre, apellido, email, celular, comuna, password }) => {
+const createCliente = async ({ nombre, apellido, email, celular, comuna, password }) => {
     const result = await pool.query({
         text: "INSERT INTO cliente(nombre, apellido, email, celular, comuna, password) VALUES ($1, $2, $3, $4, $5, $6);",
         values: [nombre, apellido, email, celular, comuna, password]
@@ -24,5 +24,6 @@ const crearCliente = async ({ nombre, apellido, email, celular, comuna, password
     return result.rows[0];
 }
 module.exports = {
-    getCliente
+    getCliente,
+    createCliente
 }
