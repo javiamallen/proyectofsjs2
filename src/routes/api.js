@@ -21,6 +21,8 @@ try {
     if (!apellido) return res.status(400).send("El apellido es requerido");
     if (!celular) return res.status(400).send("El celular es requerido");
     if (!password) return res.status(400).send("El password es requerido");
+    
+
 
 const NuevoCliente = await db.createCliente({ email, nombre, apellido, celular, password });
 res.status(201).send(NuevoCliente);
