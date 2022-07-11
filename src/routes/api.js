@@ -2,6 +2,7 @@
 
 const { Router } = require('express');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const db = require('../db');
 const router = Router();
 
@@ -60,7 +61,13 @@ if (!passwordValid) {
 
 }
 
-  res.status(200).send(cliente);
+// metodo sign para firmar token
+
+const token = jwt.sign({email: cliente.email }, "secret_key");
+delete cliente.password;
+
+
+  res.status(200).send({cliente, token});
 } catch (error) {
   res.status(500).send(error);
 }
