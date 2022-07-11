@@ -37,4 +37,35 @@ res.status(201).send(NuevoCliente);
 }
 });
 
+// JWT
+
+router.post('/login', async (req,res) => {
+try {
+  const { email, password } = req.body;
+  if (!email) return res.status(400).send("El email es requerido");
+  if (!password) return res.status(400).send("El password es requerido");
+
+// obtener usuario a partir del email
+
+const cliente = await db.getClienteByEmail(email);
+if (!cliente) {
+  return res.status(400).send("Credenciales invalidas");
+}
+
+// comparar contraseña con la que se recibe del formulario 
+
+const passwordValid = await bcrypt.compare(password, cliente.password);
+if (!passwordValid) {
+  return res.status(400).send("Credenciales invalidas");
+
+}
+
+  res.status(200).send(cliente);
+} catch (error) {
+  res.status(500).send(error);
+}
+
+
+});
+
 module.exports = router;

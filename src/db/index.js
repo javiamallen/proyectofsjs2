@@ -9,8 +9,18 @@ const pool = new Pool({
 });
 
 const getCliente = async () => {
-    const result = await pool.query("SELECT * FROM cliente;");
+    const result = await pool.query("SELECT * FROM cliente");
     return result.rows;
+}
+
+// getter para jwt
+
+const getClienteByEmail = async (email) => {
+    const result = await pool.query({
+        text: "SELECT * FROM cliente WHERE email = $1",
+        values: [email]
+    });
+    return result.rows[0];
 }
 
 
@@ -18,12 +28,13 @@ const getCliente = async () => {
 
 const createCliente = async ({ email, nombre, apellido, celular, password }) => {
     const result = await pool.query({
-        text: "INSERT INTO cliente(email, nombre, apellido, celular, password) VALUES ($1, $2, $3, $4, $5);",
+        text: "INSERT INTO cliente(email, nombre, apellido, celular, password) VALUES ($1, $2, $3, $4, $5) RETURNING *;",
         values: [email, nombre, apellido, celular, password]
     })
     return result.rows[0];
 }
 module.exports = {
     getCliente,
+    getClienteByEmail,
     createCliente
 }

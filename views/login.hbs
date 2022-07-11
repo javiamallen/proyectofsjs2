@@ -1,1 +1,42 @@
-<h1>login</h1>
+<h1>Mi Cuenta</h1>
+
+<form id="registerForm">
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" class="form-control" id="email">
+    <div id="email" class="form-text">Ingresa un correo electrónico válido</div>
+  </div>
+
+  <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1">
+  </div>
+  <br>
+  <button type="submit" class="btn btn-primary">Ingresar</button>
+
+
+
+
+  <script>
+document.getElementById("registerForm").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  let [email, password] = document.querySelectorAll("input");
+
+  try {
+    const response = await axios.post('/api/login', {
+      email: email.value,
+      password: password.value
+
+
+    });
+
+  
+    console.log(response.data);
+    } catch (e) {
+      alert(e.response.data);
+    }
+  });
+
+
+
+
+</script>

@@ -51,6 +51,8 @@ document.getElementById("registerForm").addEventListener("submit", async (event)
     });
 
     // internal server error 500, registrando post en db de igual forma, error en catch, salta alter con 2 obj vacios)
+    alert("Usuario Registrado Correctamente");
+    window.location.href = '/login'
     console.log(response.data);
     } catch (e) {
       alert(e.response.data);
