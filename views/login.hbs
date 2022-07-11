@@ -22,15 +22,18 @@ document.getElementById("registerForm").addEventListener("submit", async (event)
   let [email, password] = document.querySelectorAll("input");
 
   try {
-    const response = await axios.post('/api/login', {
+    const { data } = await axios.post('/api/login', {
       email: email.value,
       password: password.value
 
 
     });
 
-  
-    console.log(response.data);
+    // guardar usuario
+
+    localStorage.setItem("cliente", JSON.stringify(data.cliente));
+    localStorage.setItem("token", data.token);
+ 
     } catch (e) {
       alert(e.response.data);
     }
