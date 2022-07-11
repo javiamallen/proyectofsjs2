@@ -1,6 +1,7 @@
 // enrutador que consume los datos de la BD
 
 const { Router } = require('express');
+const bcrypt = require('bcrypt');
 const db = require('../db');
 const router = Router();
 
@@ -22,9 +23,13 @@ try {
     if (!celular) return res.status(400).send("El celular es requerido");
     if (!password) return res.status(400).send("El password es requerido");
     
+// bcrypt password
+
+const passwordHash = await bcrypt.hash(password, 10);
 
 
-const NuevoCliente = await db.createCliente({ email, nombre, apellido, celular, password });
+
+const NuevoCliente = await db.createCliente({ email, nombre, apellido, celular, password: passwordHash });
 res.status(201).send(NuevoCliente);
 
 } catch (error) {
