@@ -6,6 +6,9 @@ const jwt = require('jsonwebtoken');
 const db = require('../db');
 const router = Router();
 
+
+
+
 router.get('/cliente', async (req, res) => {
     const cliente = await db.getCliente();
     res.status(202).send(cliente);
