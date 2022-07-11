@@ -41,5 +41,10 @@ router.get("/complete", (req, res) => {
     res.render("complete");
 });
 
+router.get("/private", (req, res) => {
+    res.render("private");
+});
+
+
 
 module.exports = router;
