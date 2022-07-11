@@ -7,13 +7,20 @@ const db = require('../db');
 const router = Router();
 
 
+// rutas creacion usuario
 
+router.get('/cliente',
 
-router.get('/cliente', async (req, res) => {
+async (req, res, next) => {
+  const token = req.headers.authorization;
+  if (!token) return res.status(401).send("No token provided");
+  next();
+},
+async (req, res) => {
     const cliente = await db.getCliente();
-    res.status(202).send(cliente);
-
-});
+    res.status(200).send(cliente);
+}
+);
 
 router.post('/cliente', async (req, res) => {
 try {
@@ -33,13 +40,18 @@ const passwordHash = await bcrypt.hash(password, 10);
 
 
 
-const NuevoCliente = await db.createCliente({ email, nombre, apellido, celular, password: passwordHash });
-res.status(201).send(NuevoCliente);
+const nuevoCliente = await db.createCliente({ email, nombre, apellido, celular, password: passwordHash });
+res.status(201).send(nuevoCliente);
 
 } catch (error) {
   res.status(500).send(error);
 }
 });
+
+
+// rutas creacion pedidos
+
+
 
 // JWT
 

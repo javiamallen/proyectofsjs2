@@ -11,6 +11,11 @@
 
 <body>
   <script src="/axios/axios.min.js"></script>
+
+  <script>
+    axios.defaults.headers.common['Authorization'] = localStorage.getItem("token");
+    console.log(axios.defaults.headers)
+  </script>
 <!--
 //  falta inyectar token al header authorization jwt
 

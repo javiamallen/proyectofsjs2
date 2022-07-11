@@ -1,8 +1,23 @@
-<h1>Mi Cuenta</h1>
+<h1>vista privada</h1>
+
+
+
+
+
+
 
 <script>
 
     if (!localStorage.getItem("token")) {
         window.location.replace("/login");
     }
+
+
+    // consultar usuarios
+
+    async function getCliente() {
+        const { data } =  axios.get('/api/cliente');
+        console.log(data);
+    }
+    getCliente();
 </script>

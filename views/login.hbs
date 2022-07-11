@@ -33,6 +33,7 @@ document.getElementById("registerForm").addEventListener("submit", async (event)
 
     localStorage.setItem("cliente", JSON.stringify(data.cliente));
     localStorage.setItem("token", data.token);
+    axios.defaults.headers.common['Authorization'] = localStorage.getItem("token");
     window.location.href = '/private';
  
     } catch (e) {
