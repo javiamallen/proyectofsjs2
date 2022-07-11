@@ -6,7 +6,7 @@ CREATE TABLE cliente (
 	apellido VARCHAR(20) NOT NULL 
 	celular INT(10) NOT NULL
 	password VARCHAR(60) NOT NULL
-	
+	-->OK
 );
 
 CREATE TABLE productos (
@@ -14,14 +14,21 @@ CREATE TABLE productos (
     producto_descripcion VARCHAR(50),
     precio INT,
     disponible BOOLEAN NOT NULL
-);
+); --> OK
 
-
+CREATE TABLE pedido (
+    id_pedido INT PRIMARY KEY,
+    fecha DATE,
+    email_usuario VARCHAR(50),
+    FOREIGN KEY (email_usuario) REFERENCES cliente(email) ON DELETE CASCADE
+); --> OK
 
 
 CREATE TABLE detalle_pedido (
     cantidad_productos INT,
     subtotal INT,
-    FOREIGN KEY (id_pedido) REFERENCES pedido(id) ON DELETE CASCADE,
-    FOREIGN KEY (producto_id) REFERENCES productos(id) ON DELETE CASCADE
-);
+    pedido_id INT,
+    producto_id INT,
+    FOREIGN KEY (pedido_id) REFERENCES pedido (id_pedido) ON DELETE CASCADE,
+    FOREIGN KEY (producto_id) REFERENCES productos (id_producto) ON DELETE CASCADE
+); --> OK
