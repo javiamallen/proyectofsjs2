@@ -4,26 +4,26 @@
 <br>
 <p>Ingresa tus datos para registrarte en Joyas Por Mayor</p>
 
-<form>
-<form>
+
+<form id="registerForm">
   <div class="mb-3">
     <label for="email" class="form-label">Email</label>
-    <input type="email" class="form-control" id="email" aria-describedby="email">
+    <input type="email" class="form-control" id="email">
     <div id="email" class="form-text">Ingresa un correo electrónico válido</div>
   </div>
   <div class="mb-3">
     <label for="nombre" class="form-label">Nombre</label>
-    <input type="nombre" class="form-control" id="nombre" aria-describedby="nombre">
+    <input type="nombre" class="form-control" id="nombre">
     <div id="nombre" class="form-text">Ingresa tu nombre</div>
     </div>
     <div class="mb-3">
     <label for="apellido" class="form-label">Apellido</label>
-    <input type="apellido" class="form-control" id="apellido" aria-describedby="apellido">
+    <input type="apellido" class="form-control" id="apellido">
     <div id="apellido" class="form-text">Ingresa tu apellido </div>
   </div>
   <div class="mb-3">
     <label for="celular" class="form-label">Celular</label>
-    <input type="celular" class="form-control" id="celular" aria-describedby="celular">
+    <input type="celular" class="form-control" id="celular">
     <div id="celular" class="form-text">Ingresa tu número de celular </div>
   </div>
   <div class="mb-3">
@@ -34,4 +34,30 @@
   <button type="submit" class="btn btn-primary">Registrarse</button>
 </form>
 
-</form>
+<script>
+document.getElementById("registerForm").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  let [email, nombre, apellido, celular, password] = document.querySelectorAll("input");
+
+  try {
+    const response = await axios.post('/api/cliente', {
+      email: email.value,
+      nombre: nombre.value,
+      apellido: apellido.value,
+      celular: celular.value,
+      password: password.value
+
+
+    });
+
+    // internal server error 500, registrando post en db de igual forma, error en catch, salta alter con 2 obj vacios)
+    console.log(response.data);
+    } catch (e) {
+      alert(e.response.data);
+    }
+  });
+
+
+
+
+</script>
