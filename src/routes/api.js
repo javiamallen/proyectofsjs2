@@ -9,14 +9,25 @@ const router = Router();
 
 // rutas creacion usuario
 
+const secret_key = "secret_key";
+
 router.get('/cliente',
 
 async (req, res, next) => {
   const token = req.headers.authorization;
   if (!token) return res.status(401).send("No token provided");
+
+  jwt.verify (token, secret_key, (err, decoded) => {
+    if (err) {
+    return res.status(401).send("Token invalido");
+  }
+  req.cliente = decoded;
   next();
+  });
+  
 },
 async (req, res) => {
+  console.log(req.cliente);
     const cliente = await db.getCliente();
     res.status(200).send(cliente);
 }
@@ -78,7 +89,7 @@ if (!passwordValid) {
 
 // metodo sign para firmar token
 
-const token = jwt.sign({email: cliente.email }, "secret_key");
+const token = jwt.sign({email: cliente.email }, secret_key);
 delete cliente.password;
 
 
