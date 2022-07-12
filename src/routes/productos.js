@@ -4,7 +4,7 @@ const { Router } = require('express');
 const db = require('../db');
 const router = Router();
 
-router.get("/", async (req, res) => {
+router.get("/productos", async (req, res) => {
     try {
         const productos = await db.getProductos();
         res.json(productos);
@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
     }
 })
 
-router.put("/:id", async (req, res) => {
+router.put("/productos/:id", async (req, res) => {
     try {
         const respuesta = await db.updateProducto(req.body, req.params.id);
         res.json(respuesta);

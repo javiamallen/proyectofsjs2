@@ -33,8 +33,19 @@ const createCliente = async ({ email, nombre, apellido, celular, password }) => 
     })
     return result.rows[0];
 }
+
+// get productos
+const getProductos = async () => {
+    const { rows } = await pool.query({
+        text: "SELECT * FROM productos"
+    });
+    return rows;
+}
+
+
 module.exports = {
     getCliente,
     getClienteByEmail,
-    createCliente
+    createCliente,
+    getProductos
 }

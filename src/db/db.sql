@@ -32,3 +32,4 @@ CREATE TABLE detalle_pedido (
     FOREIGN KEY (pedido_id) REFERENCES pedido (id_pedido) ON DELETE CASCADE,
     FOREIGN KEY (producto_id) REFERENCES productos (id_producto) ON DELETE CASCADE
 ); --> OK
+

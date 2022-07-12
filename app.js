@@ -40,5 +40,5 @@ app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist')
 
 app.use('/', require('./src/routes/views'));
 app.use('/api', require('./src/routes/api'));
-
+app.use('/', require('./src/routes/productos'));
 
