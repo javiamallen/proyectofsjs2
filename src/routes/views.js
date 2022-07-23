@@ -28,8 +28,8 @@ router.get("/order", (req, res) => {
 
 // vista producto indiv
 
-router.get("/product", (req, res) => {
-    res.render("Product");
+router.get("/products", (req, res) => {
+    res.render("products");
 });
 
 // vista Lista de Productos
